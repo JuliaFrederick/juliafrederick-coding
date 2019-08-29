@@ -1,1 +1,1 @@
-# juliafrederick-codig
+Julia Frederick's first R coding exercise
