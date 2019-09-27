@@ -1,6 +1,7 @@
 ---
 title: "Julia Frederick Coding Exercise"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 ---
@@ -103,3 +104,31 @@ fit2 <- lm(africa2000$life_expectancy ~ africa2000$population)
 summary(fit2)
 ```
 Predicting life expectancy based on infant mortality has a significant positive correlation. While using population size to predict life expectancy is not significantly correlated.
+
+# By Yang
+
+```{r}
+library(tidyverse)
+library(skimr)
+```
+
+```{r}
+glimpse(gapminder)
+skim(gapminder)
+
+gapminder2 <- gapminder %>% filter(continent=="Africa") %>% select(infant_mortality, life_expectancy, population, country)
+
+ggplot(gapminder2,aes(x=infant_mortality,y=life_expectancy,col=country))+
+  geom_point()
+
+ggplot(gapminder2,aes(x=population,y=life_expectancy,col=country))+
+  geom_point()
+```
+
+```{r}
+gapminder %>% filter(continent=="Africa", year==2000) %>% select(infant_mortality, life_expectancy, population, country) %>% 
+  ggplot(.,aes(x=infant_mortality,y=life_expectancy))+
+  geom_point()+
+  stat_smooth(method = "lm")
+```
+
